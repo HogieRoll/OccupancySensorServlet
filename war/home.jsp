@@ -1,4 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import="com.google.appengine.api.users.UserService" %>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="com.google.appengine.api.datastore.DatastoreServiceFactory" %>
+<%@ page import="com.google.appengine.api.datastore.DatastoreService" %>
+<%@ page import="com.google.appengine.api.datastore.Query" %>
+<%@ page import="com.google.appengine.api.datastore.Entity" %>
+<%@ page import="com.google.appengine.api.datastore.FetchOptions" %>
+<%@ page import="com.google.appengine.api.datastore.Key" %>
+<%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <link rel="stylesheet" href="bootstrap.css">
 	<nav class="navbar navbar-inverse">
@@ -42,4 +54,22 @@
     	</div>
   	</div>
 	</nav>
+    <%
+        
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Key postKey = KeyFactory.createKey("SensorInfo", "Sensor");
+        
+        Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
+        List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
+        Entity Update=updates.get(0);
+        pageContext.setAttribute("Update_Content",Update.getProperty("content"));
+    %>
+    <div class="panel-heading">
+    	<h3 class="panel-title"><h2>${fn:escapeXml(Update_Content)}</h2></h3>
+  	</div>
+    
+    
+    
+       
+	
 </html>
