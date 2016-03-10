@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.servlet.http.*;
 
 import org.mortbay.util.ajax.JSON;
+import org.json.*;
 
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -34,21 +35,18 @@ public class OccupancySensorServletServlet extends HttpServlet {
 			json+=br.readLine();
 		}
 		
-		Object jsonMessage=JSON.parse(json);
-		String s=jsonMessage.toString();
-		
-
-		
-        Key guestbookKey = KeyFactory.createKey("SensorInfo", "Sensor");
+		JSONObject jsonObj=new JSONObject(json);
+        //Key guestbookKey = KeyFactory.createKey("SensorInfo", "Sensor");
+		Key guestbookKey = KeyFactory.createKey(jsonObj.getString("SensorID"), jsonObj.getString("SensorID"));
         
+		
         Entity SensorData = new Entity("SensorData", guestbookKey);
         Date d=new Date();
-        SensorData.setProperty("content", s);
+        SensorData.setProperty("content", jsonObj.get("Reading"));
+        SensorData.setProperty("sensorID", jsonObj.get("SensorID"));
         SensorData.setProperty("date",d.getTime());
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(SensorData);
- 
-        
  
 	}
 	

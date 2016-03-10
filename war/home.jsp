@@ -55,18 +55,27 @@
   	</div>
 	</nav>
     <%
-        
+        //String confList[]={"C01","C02","C03","C04","C05"};
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        Key postKey = KeyFactory.createKey("SensorInfo", "Sensor");
+        //for(int i=0;i<5;i++)
+        //{
+        Key postKey = KeyFactory.createKey("C01", "C01");
         
         Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
         List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
         Entity Update=updates.get(0);
-        pageContext.setAttribute("Update_Content",Update.getProperty("content"));
+        pageContext.setAttribute("confResult",Update.getProperty("content"));
+        pageContext.setAttribute("confID",Update.getProperty("sensorID"));
+        pageContext.setAttribute("date", Update.getProperty("date"));
+        %>
+        <div class="panel-heading">
+    	<h3 class="panel-title"><h1>${fn:escapeXml(date)}</h1><h2>${fn:escapeXml(confID)}</h2>${fn:escapeXml(confResult)}</h3>
+  	    </div>
+  	    <%
+        //}
+        
     %>
-    <div class="panel-heading">
-    	<h3 class="panel-title"><h2>${fn:escapeXml(Update_Content)}</h2></h3>
-  	</div>
+    
     
     
     
