@@ -18,11 +18,31 @@ public class TestPost extends HttpServlet{
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		String json[]={ "{\n\"SensorID\":\"C01\",\n\"Reading\":\"Occupied\"\n}",
-				        "{\n\"SensorID\":\"C02\",\n\"Reading\":\"Occupied\"\n}",
+		String json[]={ "{\n\"SensorID\":\"E01\",\n\"Reading\":\"Occupied\"\n}",
+		        		"{\n\"SensorID\":\"E02\",\n\"Reading\":\"Occupied\"\n}",
+		        		"{\n\"SensorID\":\"E03\",\n\"Reading\":\"Not Occupied\"\n}",
+		        		"{\n\"SensorID\":\"E04\",\n\"Reading\":\"Not Occupied\"\n}",
+						"{\n\"SensorID\":\"E05\",\n\"Reading\":\"Not Occupied\"\n}",
+						"{\n\"SensorID\":\"D01\",\n\"Reading\":\"Occupied\"\n}",
+		        		"{\n\"SensorID\":\"D02\",\n\"Reading\":\"Occupied\"\n}",
+		        		"{\n\"SensorID\":\"D03\",\n\"Reading\":\"Not Occupied\"\n}",
+		        		"{\n\"SensorID\":\"D04\",\n\"Reading\":\"Not Occupied\"\n}",
+						"{\n\"SensorID\":\"D05\",\n\"Reading\":\"Not Occupied\"\n}",
+						"{\n\"SensorID\":\"C01\",\n\"Reading\":\"Occupied\"\n}",
+				        "{\n\"SensorID\":\"C02\",\n\"Reading\":\"Not Occupied\"\n}",
 				        "{\n\"SensorID\":\"C03\",\n\"Reading\":\"Occupied\"\n}",
 				        "{\n\"SensorID\":\"C04\",\n\"Reading\":\"Occupied\"\n}",
-						"{\n\"SensorID\":\"C05\",\n\"Reading\":\"Occupied\"\n}"};
+						"{\n\"SensorID\":\"C05\",\n\"Reading\":\"Occupied\"\n}",
+						"{\n\"SensorID\":\"B01\",\n\"Reading\":\"Not Occupied\"\n}",
+				        "{\n\"SensorID\":\"B02\",\n\"Reading\":\"Occupied\"\n}",
+				        "{\n\"SensorID\":\"B03\",\n\"Reading\":\"Not Occupied\"\n}",
+				        "{\n\"SensorID\":\"B04\",\n\"Reading\":\"Occupied\"\n}",
+						"{\n\"SensorID\":\"B05\",\n\"Reading\":\"Occupied\"\n}",
+                        "{\n\"SensorID\":\"A01\",\n\"Reading\":\"Occupied\"\n}",
+				        "{\n\"SensorID\":\"A02\",\n\"Reading\":\"Occupied\"\n}",
+				        "{\n\"SensorID\":\"A03\",\n\"Reading\":\"Not Occupied\"\n}",
+				        "{\n\"SensorID\":\"A04\",\n\"Reading\":\"Not Occupied\"\n}",
+						"{\n\"SensorID\":\"A05\",\n\"Reading\":\"Not Occupied\"\n}"};
 		for(String s:json)
 		{
 			JSONObject jsonObj=new JSONObject(s);

@@ -44,11 +44,47 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+<!--  <head>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                var reloadData = 0; // store timer
 
-	
-  </head>
+                // load data on page load, which sets timeout to reload again
+                loadData();
+            });
+
+            function loadData() {
+                $('#load_me').load('home.jsp', function() {
+                    if (reloadData != 0)
+                        window.clearTimeout(reloadData);
+                    reloadData = window.setTimeout(loadData, 10000)
+                }).fadeIn("slow"); 
+            }
+        </script>
+    </head>-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
+</script>
+<style type="text/css">
+	.bs-example{
+		margin: 20px;
+	}
+</style>
+</head>
 <body>
-
 <link rel="stylesheet" href="bootstrap.css">
 <!--
 	<nav class="navbar">
@@ -99,7 +135,7 @@
 <div id="container" style="margin:1%" class="col-md-6">
 
 <div class="tabbable">
-<ul class="nav nav-tabs">
+<ul class="nav nav-tabs" id="myTab">
   <li class="active"><a data-toggle="tab" href="#wingA">Wing A</a></li>
   <li><a data-toggle="tab" href="#wingB">Wing B</a></li>
   <li><a data-toggle="tab" href="#wingC">Wing C</a></li>
@@ -109,7 +145,7 @@
   <li><a data-toggle="tab" href="#wingG">Wing G</a></li>
   <li><a data-toggle="tab" href="#wingH">Wing H</a></li>
 </ul>
-<div class="tab-content">
+<div class="bs-example">
   <div id="wingA" class="tab-pane fade in active">
 	<div id="occupancytable"> 
 <!--
@@ -136,12 +172,21 @@
 		</tbody>
 	  </table>
 -->	  
-	      <%
-        //String confList[]={"C01","C02","C03","C04","C05"};
+    <table class="table table-hover table-bordered table-striped" style="width:90%">
+		<thead>
+		  <tr>
+			<th>Room Number</th>
+			<th>Occupancy</th>
+			<th>Timestamp</th>
+		  </tr>
+		</thead>
+	    <%
+        response.setIntHeader("Refresh", 5);
+        String confListA[]={"A01","A02","A03","A04","A05"};
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        //for(int i=0;i<5;i++)
-        //{
-        Key postKey = KeyFactory.createKey("C01", "C01");
+        for(int i=0;i<5;i++)
+        {
+        Key postKey = KeyFactory.createKey(confListA[i], confListA[i]);
         
         Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
         List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
@@ -150,18 +195,6 @@
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
         pageContext.setAttribute("date", Update.getProperty("date"));
         %>
-<!-- <div class="panel-heading">
-    		<h3 class="panel-title"><h1>${fn:escapeXml(date)}</h1><h2>${fn:escapeXml(confID)}</h2>${fn:escapeXml(confResult)}</h3>
-  	    </div>
- --> 	    
-  	    <table class="table table-hover table-bordered table-striped" style="width:90%">
-		<thead>
-		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
-			<th>Timestamp</th>
-		  </tr>
-		</thead>
 		<tbody>
 		  <tr>
 			<td>${fn:escapeXml(confID)}</td>
@@ -169,7 +202,9 @@
 			<td>${fn:escapeXml(date)}</td>
 		  </tr>
 		</tbody>
-	  </table>
+	  
+        <%}%>
+    </table>
   </div>	
   </div>
   
@@ -177,8 +212,63 @@
     <h3>Wing B</h3>
   </div>
   <div id="wingC" class="tab-pane fade">
-    <h3>Wing C</h3>
-    <p>Some content in Wing C.</p>
+    	<div id="occupancytable"> 
+<!--
+		<table class="table table-hover table-bordered table-striped" style="width:90%">
+		<thead>
+		  <tr>
+			<th>Room Number</th>
+			<th>Occupancy</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  <tr>
+			<td>A13</td>
+			<td><occupiedred>Occupied</occupiedred></td>
+		  </tr>
+		  <tr>
+			<td>A17</td>
+			<td><vacantgreen>Empty</vacantgreen></td>
+		  </tr>
+		  <tr>
+			<td>B14</td>
+			<td><occupiedred>Occupied</occupiedred></td>
+		  </tr>
+		</tbody>
+	  </table>
+-->	  
+    <table class="table table-hover table-bordered table-striped" style="width:90%">
+		<thead>
+		  <tr>
+			<th>Room Number</th>
+			<th>Occupancy</th>
+			<th>Timestamp</th>
+		  </tr>
+		</thead>
+	    <%
+        String confListB[]={"C01","C02","C03","C04","C05"};
+        for(int i=0;i<5;i++)
+        {
+        Key postKey = KeyFactory.createKey(confListB[i], confListB[i]);
+        
+        Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
+        List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
+        Entity Update=updates.get(0);
+        pageContext.setAttribute("confResult",Update.getProperty("content"));
+        pageContext.setAttribute("confID",Update.getProperty("sensorID"));
+        pageContext.setAttribute("date", Update.getProperty("date"));
+        %>
+		<tbody>
+		  <tr>
+			<td>${fn:escapeXml(confID)}</td>
+			<td>${fn:escapeXml(confResult)}</td>
+			<td>${fn:escapeXml(date)}</td>
+		  </tr>
+		</tbody>
+	  
+        <%}%>
+    </table>
+  </div>
   </div>
   <div id="wingD" class="tab-pane fade">
     <h3>Wing D</h3>
@@ -206,10 +296,8 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
    <!-- Include all compiled plugins (below), or include individual files as needed -->
    <script src="js/bootstrap.min.js"></script>
- </body>    
-    
+ </body>
     
     
        
-	
 </html>
