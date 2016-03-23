@@ -12,10 +12,31 @@
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html  lang="en">
-  <head>
+<head>
+
+<link rel="shortcut icon" type="image/png" href="img/ti_logo.png"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	
+	<link rel="apple-touch-icon"
+		  href="img/apple_ti_logo.png" />
+	<link rel="apple-touch-icon-precomposed"
+		  href="img/android_ti_logo.png" />
+		  
+	<!-- Android icons -->
+	<link href="img/android_ti_logo.png" rel="icon" sizes="192x192" />
+	
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TI Conference Room Occupancy</title>  
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/mycss2.css">	
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -35,11 +56,13 @@ $(document).ready(function(){
 	}
     </style>
     </head>
+    
 <body>
 
-<div style="margin:2%"><h3>TI Conference Room Occupancy </h3></div>
-<%response.setIntHeader("Refresh", 5);%>
-<div id="container" style="margin:1%" class="col-md-6">
+<div style="padding-top:5px"></div><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></div>
+<div style="margin:10px; margin-top:-5px"><h3>Conference Room Occupancy </h3></div>
+<%response.setIntHeader("Refresh", 10);%>
+<div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
     <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
         <li class="active"><a data-toggle="tab" href="#wingA">Wing A</a></li>
@@ -53,16 +76,16 @@ $(document).ready(function(){
     <div class="tab-content">
         <div id="wingA" class="tab-pane fade in active">
         <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-bordered table-striped table-hover " style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
         <%
-        response.setIntHeader("Refresh", 5);
+        response.setIntHeader("Refresh", 10);
         String confListA[]={"A01","A02","A03","A04","A05"};
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         for(int i=0;i<5;i++)
@@ -88,16 +111,16 @@ $(document).ready(function(){
   
   <div id="wingB" class="tab-pane fade">
     <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-hover table-bordered table-striped" style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
         <%
-        response.setIntHeader("Refresh", 5);
+        response.setIntHeader("Refresh", 10);
         String confListB[]={"B01","B02","B03","B04","B05"};
         
         for(int i=0;i<5;i++)
@@ -122,16 +145,16 @@ $(document).ready(function(){
   </div>
   <div id="wingC" class="tab-pane fade">
     <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-hover table-bordered table-striped" style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
                 <%
-        response.setIntHeader("Refresh", 5);
+        response.setIntHeader("Refresh", 10);
         String confListC[]={"C01","C02","C03","C04","C05"};
         
         for(int i=0;i<5;i++)
@@ -156,16 +179,16 @@ $(document).ready(function(){
   </div>
   <div id="wingD" class="tab-pane fade">
     <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-hover table-bordered table-striped" style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
                 <%
-        response.setIntHeader("Refresh", 5);
+        response.setIntHeader("Refresh", 10);
         String confListD[]={"D01","D02","D03","D04","D05"};
         
         for(int i=0;i<5;i++)
@@ -190,16 +213,16 @@ $(document).ready(function(){
   </div>
   <div id="wingE" class="tab-pane fade">
     <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-hover table-bordered table-striped" style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
                 <%
-        response.setIntHeader("Refresh", 5);
+        response.setIntHeader("Refresh", 10);
         String confListE[]={"E01","E02","E03","E04","E05"};
         
         for(int i=0;i<5;i++)
@@ -224,11 +247,11 @@ $(document).ready(function(){
   </div>
   <div id="wingF" class="tab-pane fade">
     <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-hover table-bordered table-striped" style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
@@ -237,11 +260,11 @@ $(document).ready(function(){
   </div>
   <div id="wingG" class="tab-pane fade">
     <div id="occupancytable">
-        <table class="table table-hover table-bordered table-striped" style="width:90%">
+        <table class="table table-hover table-bordered table-striped" style="width:100%">
 		<thead>
 		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
+			<th>Room</th>
+			<th>Availability</th>
 			<th>Timestamp</th>
 		  </tr>
 		</thead>
@@ -251,7 +274,7 @@ $(document).ready(function(){
 </div>
 </div>
 	
-</div> <!-- end of div: container -->	
+</div> <!-- end of div: container -->
  </body>
     
     
