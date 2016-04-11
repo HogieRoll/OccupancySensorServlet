@@ -144,13 +144,23 @@ $(document).ready(function(){
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
         pageContext.setAttribute("date", Update.getProperty("date"));
-        %>
-        <tbody>
-            <td>${fn:escapeXml(confID)}</td>
-			<td>${fn:escapeXml(confResult)}</td>
-			<td>${fn:escapeXml(date)}</td>
-        </tbody>
-        <%}%>
+        if (Update.getProperty("content").equals("Available"))
+        	{%>
+	        <tbody>
+	            <td>${fn:escapeXml(confID)}</td>
+				<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
+				<td>${fn:escapeXml(date)}</td>
+	        </tbody>
+        <%}
+        else
+        {%>
+	        <tbody>
+	            <td>${fn:escapeXml(confID)}</td>
+				<td>${fn:escapeXml(confResult)}</td>
+				<td>${fn:escapeXml(date)}</td>
+	        </tbody>
+        <%}
+        }%>
         </table>
     </div>
   </div>
@@ -222,13 +232,23 @@ $(document).ready(function(){
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
         pageContext.setAttribute("date", Update.getProperty("date"));
-        %>
+        if (Update.getProperty("content").equals("Available"))
+    	{%>
+        <tbody>
+            <td>${fn:escapeXml(confID)}</td>
+			<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
+			<td>${fn:escapeXml(date)}</td>
+        </tbody>
+    <%}
+    else
+    {%>
         <tbody>
             <td>${fn:escapeXml(confID)}</td>
 			<td>${fn:escapeXml(confResult)}</td>
 			<td>${fn:escapeXml(date)}</td>
         </tbody>
-        <%}%>
+    <%}
+        }%>
         </table>
     </div>
   </div>
@@ -256,13 +276,23 @@ $(document).ready(function(){
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
         pageContext.setAttribute("date", Update.getProperty("date"));
-        %>
-        <tbody>
-            <td>${fn:escapeXml(confID)}</td>
-			<td>${fn:escapeXml(confResult)}</td>
-			<td>${fn:escapeXml(date)}</td>
-        </tbody>
-        <%}%>
+        if (Update.getProperty("content").equals("Available"))
+        	{%>
+	        <tbody>
+	            <td>${fn:escapeXml(confID)}</td>
+				<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
+				<td>${fn:escapeXml(date)}</td>
+	        </tbody>
+        <%}
+        else
+        {%>
+	        <tbody>
+	            <td>${fn:escapeXml(confID)}</td>
+				<td>${fn:escapeXml(confResult)}</td>
+				<td>${fn:escapeXml(date)}</td>
+	        </tbody>
+        <%}
+        }%>
         </table>
     </div>
   </div>
