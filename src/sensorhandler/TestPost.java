@@ -50,12 +50,19 @@ public class TestPost extends HttpServlet{
 	        
 	        Entity SensorData = new Entity("SensorData", guestbookKey);
 	        Date d=new Date();
-	        SensorData.setProperty("content", jsonObj.get("Reading"));
+	        
+	        String fixedOutput;
+	        if (jsonObj.get("Reading").equals("Not Occupied"))
+	        	fixedOutput = "Available";
+	        else fixedOutput = "Occupied";
+	        System.out.println("fixed: " + fixedOutput);
+	        SensorData.setProperty("content", fixedOutput);
+	        //SensorData.setProperty("content", jsonObj.get("Reading"));
 	        SensorData.setProperty("sensorID", jsonObj.get("SensorID"));
 	        SensorData.setProperty("date",d.getTime());
 	        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	        datastore.put(SensorData);
 		}
-		resp.sendRedirect("home.jsp");
+		resp.sendRedirect("home1.jsp");
 	}
 }

@@ -42,7 +42,19 @@ public class OccupancySensorServletServlet extends HttpServlet {
 		
         Entity SensorData = new Entity("SensorData", guestbookKey);
         Date d=new Date();
-        SensorData.setProperty("content", jsonObj.get("Reading"));
+        
+        
+        
+        String fixedOutput;
+        if (jsonObj.get("Reading").equals("Not Occupied"))
+        	fixedOutput = "Available";
+        else fixedOutput = "Occupied";
+        System.out.println("fixed: " + fixedOutput);
+        //look at jsonObj.get("Reading")
+        //if string value of that object is not occupied->available
+        //else ->unavailable
+        //SensorData.setProperty("content", jsonObj.get("Reading"));
+        SensorData.setProperty("content", fixedOutput);
         SensorData.setProperty("sensorID", jsonObj.get("SensorID"));
         SensorData.setProperty("date",d.getTime());
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
