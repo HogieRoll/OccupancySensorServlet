@@ -60,6 +60,7 @@ public class TestPost extends HttpServlet{
 	        //SensorData.setProperty("content", jsonObj.get("Reading"));
 	        SensorData.setProperty("sensorID", jsonObj.get("SensorID"));
 	        SensorData.setProperty("date",d.getTime());
+	        SensorData.setProperty("dateReadable",d.toGMTString());
 	        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	        datastore.put(SensorData);
 		}

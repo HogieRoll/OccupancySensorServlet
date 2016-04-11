@@ -60,29 +60,22 @@ $(document).ready(function(){
     
 <body>
 
-<div style="padding-top:5px"></div><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img>
+<div style="padding-top:5px"></div><a href="home1.jsp"><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img></a>
 <div style="margin:10px; margin-top:-5px"><h3>Conference Room Occupancy </h3></div>
 <%response.setIntHeader("Refresh", 10);%>
 <div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
     <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
-        <li class="active"><a data-toggle="tab" href="#wingA">Wing A</a></li>
-        <li><a data-toggle="tab" href="#wingB">Wing B</a></li>
-        <li><a data-toggle="tab" href="#wingC">Wing C</a></li>
-        <li><a data-toggle="tab" href="#wingD">Wing D</a></li>
-        <li><a data-toggle="tab" href="#wingE">Wing E</a></li>
-        <li><a data-toggle="tab" href="#wingF">Wing F</a></li>
-        <li><a data-toggle="tab" href="#wingG">Wing G</a></li>
+        <li class="active"><a data-toggle="tab" href="#Latency">Latency Errors</a></li>
     </ul>
     <div class="tab-content">
-        <div id="wingA" class="tab-pane fade in active">
+        <div id="Latency" class="tab-pane fade in active">
         <div id="occupancytable">
         <table class="table table-bordered table-striped table-hover " style="width:100%">
 		<thead>
 		  <tr>
 			<th>Room</th>
-			<th>Availability</th>
-			<th>Timestamp</th>
+			<th>TimeStamp Delta</th>
 		  </tr>
 		</thead>
         <%
@@ -103,7 +96,7 @@ $(document).ready(function(){
         Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
         List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
         Entity Update=updates.get(0);
-        long diffNS=(currentTimeNS)-(long)(Update.getProperty("date"));
+        long diffNS=(currentTimeNS)-(Long.parseLong(Update.getProperty("date").toString()));
         
         pageContext.setAttribute("confID",confList[i]);
         pageContext.setAttribute("timeDiff", Long.toString(diffNS)+"ms");

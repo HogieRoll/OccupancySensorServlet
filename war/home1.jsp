@@ -98,13 +98,13 @@ $(document).ready(function(){
         	
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
+        pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
         if (Update.getProperty("content").equals("Available"))
         	{%>
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         else
@@ -112,7 +112,7 @@ $(document).ready(function(){
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td>${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         }%>
@@ -143,13 +143,13 @@ $(document).ready(function(){
         Entity Update=updates.get(0);
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
+        pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
         if (Update.getProperty("content").equals("Available"))
         	{%>
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         else
@@ -157,7 +157,7 @@ $(document).ready(function(){
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td>${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         }%>
@@ -187,13 +187,13 @@ $(document).ready(function(){
         Entity Update=updates.get(0);
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
+        pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
         if (Update.getProperty("content").equals("Available"))
         	{%>
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         else
@@ -201,7 +201,7 @@ $(document).ready(function(){
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td>${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         }%>
@@ -231,13 +231,13 @@ $(document).ready(function(){
         Entity Update=updates.get(0);
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
+        pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
         if (Update.getProperty("content").equals("Available"))
     	{%>
         <tbody>
             <td>${fn:escapeXml(confID)}</td>
 			<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
-			<td>${fn:escapeXml(date)}</td>
+			<td>${fn:escapeXml(dateReadable)}</td>
         </tbody>
     <%}
     else
@@ -245,7 +245,7 @@ $(document).ready(function(){
         <tbody>
             <td>${fn:escapeXml(confID)}</td>
 			<td>${fn:escapeXml(confResult)}</td>
-			<td>${fn:escapeXml(date)}</td>
+			<td>${fn:escapeXml(dateReadable)}</td>
         </tbody>
     <%}
         }%>
@@ -275,13 +275,13 @@ $(document).ready(function(){
         Entity Update=updates.get(0);
         pageContext.setAttribute("confResult",Update.getProperty("content"));
         pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
+        pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
         if (Update.getProperty("content").equals("Available"))
         	{%>
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         else
@@ -289,7 +289,7 @@ $(document).ready(function(){
 	        <tbody>
 	            <td>${fn:escapeXml(confID)}</td>
 				<td>${fn:escapeXml(confResult)}</td>
-				<td>${fn:escapeXml(date)}</td>
+				<td>${fn:escapeXml(dateReadable)}</td>
 	        </tbody>
         <%}
         }%>
@@ -328,7 +328,7 @@ $(document).ready(function(){
 <div id="child" style="margin-left:20px">
     <a href="#">Instructions</a>
     &bull;
-    <a href="#diagnostics.jsp">Diagnostics</a>
+    <a href="diagnostics.jsp">Diagnostics</a>
  </div>
 	
 </div> <!-- end of div: container -->

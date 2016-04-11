@@ -57,6 +57,7 @@ public class OccupancySensorServletServlet extends HttpServlet {
         SensorData.setProperty("content", fixedOutput);
         SensorData.setProperty("sensorID", jsonObj.get("SensorID"));
         SensorData.setProperty("date",d.getTime());
+        SensorData.setProperty("dateReadable",d.toGMTString());
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(SensorData);
  
