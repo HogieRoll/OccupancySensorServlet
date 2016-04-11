@@ -324,9 +324,18 @@ $(document).ready(function(){
   </div>
 </div>
 </div>
+
+<div id="child" style="margin-left:20px">
+    <a href="#">Instructions</a>
+    &bull;
+    <a href="#diagnostics.jsp">Diagnostics</a>
+ </div>
 	
 </div> <!-- end of div: container -->
+
  </body>
+ 
+
     
     
        
