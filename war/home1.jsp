@@ -326,7 +326,16 @@ $(document).ready(function(){
 </div>
 
 <div id="child" style="margin-left:20px">
-    <a href="#">Instructions</a>
+
+    <script type="text/javascript">
+    // Popup window code
+        function newPopup(url) {
+            popupWindow = window.open(
+                url,'popUpWindow','height=300,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+        }
+    </script>
+    <a href="JavaScript:newPopup('Instructions.jsp')">Instructions</a>    
+    
     &bull;
     <a href="diagnostics.jsp">Diagnostics</a>
  </div>
