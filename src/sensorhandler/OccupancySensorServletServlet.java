@@ -43,8 +43,6 @@ public class OccupancySensorServletServlet extends HttpServlet {
         Entity SensorData = new Entity("SensorData", guestbookKey);
         Date d=new Date();
         
-        
-        
         String fixedOutput;
         if (jsonObj.get("Reading").equals("Not Occupied"))
         	fixedOutput = "Available";

@@ -85,7 +85,6 @@ $(document).ready(function(){
 		  </tr>
 		</thead>
         <%
-        response.setIntHeader("Refresh", 10);
         String confListA[]={"A01","A02","A03","A04","A05"};
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         for(int i=0;i<5;i++)
@@ -131,7 +130,6 @@ $(document).ready(function(){
 		  </tr>
 		</thead>
         <%
-        response.setIntHeader("Refresh", 10);
         String confListB[]={"B01","B02","B03","B04","B05"};
         
         for(int i=0;i<5;i++)
@@ -175,7 +173,6 @@ $(document).ready(function(){
 		  </tr>
 		</thead>
                 <%
-        response.setIntHeader("Refresh", 10);
         String confListC[]={"C01","C02","C03","C04","C05"};
         
         for(int i=0;i<5;i++)
@@ -219,7 +216,6 @@ $(document).ready(function(){
 		  </tr>
 		</thead>
                 <%
-        response.setIntHeader("Refresh", 10);
         String confListD[]={"D01","D02","D03","D04","D05"};
         
         for(int i=0;i<5;i++)
@@ -263,7 +259,6 @@ $(document).ready(function(){
 		  </tr>
 		</thead>
                 <%
-        response.setIntHeader("Refresh", 10);
         String confListE[]={"E01","E02","E03","E04","E05"};
         
         for(int i=0;i<5;i++)
@@ -334,7 +329,7 @@ $(document).ready(function(){
                 url,'popUpWindow','height=300,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
         }
     </script>
-    <a href="JavaScript:newPopup('Instructions.jsp')">Instructions</a>    
+    <a href="JavaScript:newPopup('Instructions.jsp')">instructions</a>    
     
     &bull;
     <a href="diagnostics.jsp">Diagnostics</a>
