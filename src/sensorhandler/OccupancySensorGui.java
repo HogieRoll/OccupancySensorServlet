@@ -8,6 +8,6 @@ public class OccupancySensorGui extends HttpServlet{
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		resp.sendRedirect("home1.jsp");
+		resp.sendRedirect("home.jsp");
 	}
 }

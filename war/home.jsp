@@ -12,8 +12,9 @@
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html  lang="en">
-  <head>
-	<link rel="shortcut icon" type="image/png" href="img/ti_logo.png"/>
+<head>
+
+<link rel="shortcut icon" type="image/png" href="img/ti_logo.png"/>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,41 +31,12 @@
 	<link href="img/android_ti_logo.png" rel="icon" sizes="192x192" />
 	
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>TI Conference Room Occupancy</title>
-	
-	
+    <title>TI Conference Room Occupancy</title>  
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/mycss.css">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-<!--  <head>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.0/jquery.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                var reloadData = 0; // store timer
-
-                // load data on page load, which sets timeout to reload again
-                loadData();
-            });
-
-            function loadData() {
-                $('#load_me').load('home.jsp', function() {
-                    if (reloadData != 0)
-                        window.clearTimeout(reloadData);
-                    reloadData = window.setTimeout(loadData, 10000)
-                }).fadeIn("slow"); 
-            }
-        </script>
-    </head>-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/mycss2.css">	
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script type="text/javascript">
@@ -78,225 +50,110 @@ $(document).ready(function(){
     }
 });
 </script>
-<style type="text/css">
+<script type="text/javascript">
+    function OpenLink(theLink){
+        window.location.href = theLink.href;
+    }
+</script>
+    <style type="text/css">
 	.bs-example{
 		margin: 20px;
 	}
-</style>
-</head>
+    </style>
+    </head>
+    
 <body>
-<link rel="stylesheet" href="bootstrap.css">
-<!--
-	<nav class="navbar">
-  	<div class="container-fluid">
-    	<div class="navbar-header">
-      	<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-        	<span class="sr-only">Toggle navigation</span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-        	<span class="icon-bar"></span>
-      	</button>
-      	<a class="navbar-brand" href="boostrapexample.html"><img src="img/ti_logo.jpg" alt="HTML5 Icon" style="width:60px;height:48px;"</img></a>
-    	</div>
 
-    	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      	<ul class="nav navbar-nav">
-        	<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        	<li><a href="#">Link</a></li>
-        	<li class="dropdown">
-          	<a class="dropdown-toggle" role="button" aria-expanded="false" href="#" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          	<ul class="dropdown-menu" role="menu">
-            	<li><a href="#">Action</a></li>
-            	<li><a href="#">Another action</a></li>
-            	<li><a href="#">Something else here</a></li>
-            	<li class="divider"></li>
-            	<li><a href="#">Separated link</a></li>
-            	<li class="divider"></li>
-            	<li><a href="#">One more separated link</a></li>
-          	</ul>
-        	</li>
-      	</ul>
-      	<form class="navbar-form navbar-left" role="search">
-        	<div class="form-group">
-          	<input class="form-control" type="text" placeholder="Search">
-        	</div>
-        	<button class="btn btn-default" type="submit">Submit</button>
-      	</form>
-      	<ul class="nav navbar-nav navbar-right">
-        	<li><a href="#">Link</a></li>
-      	</ul>
-    	</div>
-  	</div>
-	</nav>
- -->	
+<div style="padding-top:5px"></div><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></div>
+<div style="margin:10px; margin-top:-5px"><h3>Conference Room Occupancy </h3></div>
+<%response.setIntHeader("Refresh", 10);%>
+<div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
+    <div class="bs-example">
+    <ul class="nav nav-tabs" id="myTab">
+        <li><a data-toggle="tab" href="#wingA">Wing A</a></li>
+        <li><a data-toggle="tab" href="#wingB">Wing B</a></li>
+        <li><a data-toggle="tab" href="#wingC">Wing C</a></li>
+        <li><a data-toggle="tab" href="#wingD">Wing D</a></li>
+        <li><a data-toggle="tab" href="#wingE">Wing E</a></li>
+    </ul>
+    <div class="tab-content">
+    
+    <%
+    	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    	int roomNum[]={5,5,5,5,5};//Room A has 5 rooms
+    	String wingIDList[]={"wingA","wingB","wingC","wingD","wingE"};
+    	for(int wingID=0; wingID<roomNum.length; wingID++)
+    	{
+    		pageContext.setAttribute("wingID",wingIDList[wingID]);
+    		%>
+    			<div id=${fn:escapeXml(wingID)} class="tab-pane fade">
+        		<div id="occupancytable">
+        		<table class="table table-bordered table-striped table-hover " style="width:100%">
+				<thead>
+		  			<tr>
+						<th>Room</th>
+						<th>Availability</th>
+						<th>Timestamp</th>
+		  			</tr>
+				</thead>
+    		<%
+    		System.out.println(roomNum);
+    		char confIDPrefix=(char)(wingID+65);
+    		for(int roomID=1; roomID<roomNum[wingID]+1; roomID++)
+    		{
+    			String confID=confIDPrefix+String.format("%02d",roomID);
+    			System.out.println(confID);
+    			Key postKey = KeyFactory.createKey(confID, confID);
+    		        
+    		    Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
+    		    List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
+    		    Entity Update=updates.get(0);
+    		        	
+    		    pageContext.setAttribute("confResult",Update.getProperty("content"));
+    		    pageContext.setAttribute("confID",Update.getProperty("sensorID"));
+    		    pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
+    		    %>
+    				<tbody>
+    			            <td>${fn:escapeXml(confID)}</td>
+    			            <% if (Update.getProperty("content").equals("Available")) {%>
+    			            <td style="font-weight:bold">${fn:escapeXml(confResult)}</td>
+    			            <% } else { %>
+    			            <td>${fn:escapeXml(confResult)}</td>
+    			            <% } %>
+    						<td>${fn:escapeXml(dateReadable)}</td>
+    			    </tbody>
+    			<%        
+    		}
+    		%>
+    	    </table>
+    	    </div>
+    	    </div>
+    	    <%
+    	}
+    %>    
+	</div>
+</div>
 
-<div style="margin:2%"><h3>TI Conference Room Occupancy </h3></div>
+<div id="child" style="margin-left:20px">
+
+    <script type="text/javascript">
+    // Popup window code
+        function newPopup(url) {
+            popupWindow = window.open(
+                url,'popUpWindow','height=300,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
+        }
+    </script>
+    <a href="JavaScript:newPopup('instructions.jsp')">Instructions</a>    
+    
+    &bull;
+    <a href="diagnostics.jsp" onclick="OpenLink(this); return false">Diagnostics</a>
+ </div>
 	
-<div id="container" style="margin:1%" class="col-md-6">
+</div> <!-- end of div: container -->
 
-<div class="tabbable">
-<ul class="nav nav-tabs" id="myTab">
-  <li class="active"><a data-toggle="tab" href="#wingA">Wing A</a></li>
-  <li><a data-toggle="tab" href="#wingB">Wing B</a></li>
-  <li><a data-toggle="tab" href="#wingC">Wing C</a></li>
-  <li><a data-toggle="tab" href="#wingD">Wing D</a></li>
-  <li><a data-toggle="tab" href="#wingE">Wing E</a></li>
-  <li><a data-toggle="tab" href="#wingF">Wing F</a></li>
-  <li><a data-toggle="tab" href="#wingG">Wing G</a></li>
-  <li><a data-toggle="tab" href="#wingH">Wing H</a></li>
-</ul>
-<div class="bs-example">
-  <div id="wingA" class="tab-pane fade in active">
-	<div id="occupancytable"> 
-<!--
-		<table class="table table-hover table-bordered table-striped" style="width:90%">
-		<thead>
-		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr>
-			<td>A13</td>
-			<td><occupiedred>Occupied</occupiedred></td>
-		  </tr>
-		  <tr>
-			<td>A17</td>
-			<td><vacantgreen>Empty</vacantgreen></td>
-		  </tr>
-		  <tr>
-			<td>B14</td>
-			<td><occupiedred>Occupied</occupiedred></td>
-		  </tr>
-		</tbody>
-	  </table>
--->	  
-    <table class="table table-hover table-bordered table-striped" style="width:90%">
-		<thead>
-		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
-			<th>Timestamp</th>
-		  </tr>
-		</thead>
-	    <%
-        response.setIntHeader("Refresh", 5);
-        String confListA[]={"A01","A02","A03","A04","A05"};
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        for(int i=0;i<5;i++)
-        {
-        Key postKey = KeyFactory.createKey(confListA[i], confListA[i]);
-        
-        Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
-        List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
-        Entity Update=updates.get(0);
-        pageContext.setAttribute("confResult",Update.getProperty("content"));
-        pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
-        %>
-		<tbody>
-		  <tr>
-			<td>${fn:escapeXml(confID)}</td>
-			<td>${fn:escapeXml(confResult)}</td>
-			<td>${fn:escapeXml(date)}</td>
-		  </tr>
-		</tbody>
-	  
-        <%}%>
-    </table>
-  </div>	
-  </div>
-  
-  <div id="wingB" class="tab-pane fade">
-    <h3>Wing B</h3>
-  </div>
-  <div id="wingC" class="tab-pane fade">
-    	<div id="occupancytable"> 
-<!--
-		<table class="table table-hover table-bordered table-striped" style="width:90%">
-		<thead>
-		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr>
-			<td>A13</td>
-			<td><occupiedred>Occupied</occupiedred></td>
-		  </tr>
-		  <tr>
-			<td>A17</td>
-			<td><vacantgreen>Empty</vacantgreen></td>
-		  </tr>
-		  <tr>
-			<td>B14</td>
-			<td><occupiedred>Occupied</occupiedred></td>
-		  </tr>
-		</tbody>
-	  </table>
--->	  
-    <table class="table table-hover table-bordered table-striped" style="width:90%">
-		<thead>
-		  <tr>
-			<th>Room Number</th>
-			<th>Occupancy</th>
-			<th>Timestamp</th>
-		  </tr>
-		</thead>
-	    <%
-        String confListB[]={"C01","C02","C03","C04","C05"};
-        for(int i=0;i<5;i++)
-        {
-        Key postKey = KeyFactory.createKey(confListB[i], confListB[i]);
-        
-        Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
-        List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
-        Entity Update=updates.get(0);
-        pageContext.setAttribute("confResult",Update.getProperty("content"));
-        pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-        pageContext.setAttribute("date", Update.getProperty("date"));
-        %>
-		<tbody>
-		  <tr>
-			<td>${fn:escapeXml(confID)}</td>
-			<td>${fn:escapeXml(confResult)}</td>
-			<td>${fn:escapeXml(date)}</td>
-		  </tr>
-		</tbody>
-	  
-        <%}%>
-    </table>
-  </div>
-  </div>
-  <div id="wingD" class="tab-pane fade">
-    <h3>Wing D</h3>
-  </div>
-  <div id="wingE" class="tab-pane fade">
-    <h3>Wing E</h3>
-  </div>
-  <div id="wingF" class="tab-pane fade">
-    <h3>Wing F</h3>
-  </div>
-  <div id="wingG" class="tab-pane fade">
-    <h3>Wing G</h3>
-  </div>
-  <div id="wingH" class="tab-pane fade">
-    <h3>Wing H</h3>
-  </div>	
-	
-</div> <!-- end of div: tab-content -->
-</div> <!-- end of div: tabbable -->	
-</div> <!-- end of div: container -->	
-
-
-
-   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-   <!-- Include all compiled plugins (below), or include individual files as needed -->
-   <script src="js/bootstrap.min.js"></script>
  </body>
+ 
+
     
     
        

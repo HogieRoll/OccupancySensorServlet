@@ -60,7 +60,7 @@ $(document).ready(function(){
     
 <body>
 
-<div style="padding-top:5px"></div><a href="home1.jsp"><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img></a>
+<div style="padding-top:5px"></div><a href="home.jsp"><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img></a>
 <div style="margin:10px; margin-top:-5px"><h3>Conference Room Occupancy </h3></div>
 <%response.setIntHeader("Refresh", 10);%>
 <div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
