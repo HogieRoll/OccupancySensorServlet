@@ -65,7 +65,7 @@ $(document).ready(function(){
 <body>
 
 <div style="padding-top:5px"></div><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></div>
-<div style="margin:10px; margin-top:-5px"><h3>Conference Room Occupancy </h3></div>
+<div style="margin:10px; margin-top:-5px"><h3 align="center">Conference Room Occupancy </h3></div>
 <%response.setIntHeader("Refresh", 10);%>
 <div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
     <div class="bs-example">
@@ -138,10 +138,12 @@ $(document).ready(function(){
                 url,'popUpWindow','height=300,width=400,left=10,top=10,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes')
         }
     </script>
+<div id="footer" style="text-align:center">
     <a href="JavaScript:newPopup('instructions.jsp')">Instructions</a>    
     
     &bull;
     <a href="diagnostics.jsp" onclick="OpenLink(this); return false">Diagnostics</a>
+</div> 
  </div>
 	
 </div> <!-- end of div: container -->
