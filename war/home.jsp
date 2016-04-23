@@ -67,7 +67,7 @@ $(document).ready(function(){
 <div style="padding-top:5px"></div><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></div>
 <div style="margin:10px; margin-top:-5px"><h3 align="center">Conference Room Occupancy </h3></div>
 <%response.setIntHeader("Refresh", 10);%>
-<div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
+<div id="container" style="margin-top:-15px; text-align:center;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
     <div class="bs-example">
     <ul class="nav nav-tabs" id="myTab">
         <li><a data-toggle="tab" href="#wingA">Wing A</a></li>
@@ -90,7 +90,7 @@ $(document).ready(function(){
     		%>	
     			<div id=${fn:escapeXml(wingID)} class="tab-pane fade in active">
         		<div id="occupancytable">
-        		<table class="table table-bordered table-striped table-hover " style="width:100%">
+        		<table class="table table-bordered table-striped table-hover " align=center style="width:100%">
 				<thead>
 		  			<tr>
 						<th>Room</th>
