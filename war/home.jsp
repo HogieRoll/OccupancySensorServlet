@@ -85,15 +85,16 @@ $(document).ready(function(){
     	for(int wingID=0; wingID<roomNum.length; wingID++)
     	{
     		pageContext.setAttribute("wingID",wingIDList[wingID]);
-    		%>
-    			<div id=${fn:escapeXml(wingID)} class="tab-pane fade">
+    		//String tabFormat="tab-pane fade";
+    		//pageContext.setAttribute("tabFormat",tabFormat);
+    		%>	
+    			<div id=${fn:escapeXml(wingID)} class="tab-pane fade in active">
         		<div id="occupancytable">
         		<table class="table table-bordered table-striped table-hover " style="width:100%">
 				<thead>
 		  			<tr>
 						<th>Room</th>
 						<th>Availability</th>
-						<th>Timestamp</th>
 		  			</tr>
 				</thead>
     		<%
@@ -111,8 +112,7 @@ $(document).ready(function(){
     		        	
     		    pageContext.setAttribute("confResult",Update.getProperty("content"));
     		    pageContext.setAttribute("confID",Update.getProperty("sensorID"));
-    		    pageContext.setAttribute("dateReadable", Update.getProperty("dateReadable"));
-    		    %>
+    		 %>
     				<tbody>
     			            <td>${fn:escapeXml(confID)}</td>
     			            <% if (Update.getProperty("content").equals("Available")) {%>
@@ -120,17 +120,12 @@ $(document).ready(function(){
     			            <% } else { %>
     			            <td>${fn:escapeXml(confResult)}</td>
     			            <% } %>
-    						<td>${fn:escapeXml(dateReadable)}</td>
     			    </tbody>
-    			<%        
-    		}
-    		%>
+    	    <%}%>
     	    </table>
     	    </div>
     	    </div>
-    	    <%
-    	}
-    %>    
+  	<%}%>    
 	</div>
 </div>
 
@@ -152,9 +147,5 @@ $(document).ready(function(){
 </div> <!-- end of div: container -->
 
  </body>
- 
-
-    
-    
-       
+   
 </html>

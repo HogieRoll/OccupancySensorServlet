@@ -60,7 +60,7 @@
 	
 	<p>
 		<strong>1.</strong>
-		 In safari, visit the website.
+		 In Safari, visit the website.
 
 		 <p><img src="img/screen_1.jpg" style="width:200px;"></img></p>
 	</p>
@@ -103,30 +103,33 @@
 	
 	<p>
 		<strong>1.</strong>
-		 In the web browser, visit the website.
+		 In Chrome, visit the website.
 	</p>
 
 	<p>
 		<strong>2.</strong>
-		 Select the menu button.
+		 Select the menu button (three vertical dots on the top right).
 	</p>
 
 	<p>
 		<strong>3.</strong>
 		 Select 
 		 <i>Add to home screen</i>.
+		 <p><img src="img/android_inst_1.png" style="width:200px;"></img></p>
 	</p>
 
 	<p>
 		<strong>4.</strong>
 		 In the next screen you will be prompted to enter a name for your shortcut. Once you are done, select the
 		 <i>Add</i> 
-		 button. 
+		 button.
+		 <p><img src="img/android_inst_2.png" style="width:200px;"></img></p> 
 	</p>
 
 	<p>
 		<strong>5.</strong>
-		 The browser will now add the icon to your homescreen. 
+		 The browser will now add the icon to your homescreen.
+		 <p><img src="img/android_inst_3.png" style="width:150px;"></img></p> 
 	</p>
 
 </body>

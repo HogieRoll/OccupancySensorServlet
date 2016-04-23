@@ -51,6 +51,11 @@ $(document).ready(function(){
     }
 });
 </script>
+<script type="text/javascript">
+    function OpenLink(theLink){
+        window.location.href = theLink.href;
+    }
+</script>
     <style type="text/css">
 	.bs-example{
 		margin: 20px;
@@ -60,7 +65,7 @@ $(document).ready(function(){
     
 <body>
 
-<div style="padding-top:5px"></div><a href="home.jsp"><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img></a>
+<div style="padding-top:5px"></div><a href="home.jsp" onclick="OpenLink(this); return false"><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img></a>
 <div style="margin:10px; margin-top:-5px"><h3>Conference Room Occupancy </h3></div>
 <%response.setIntHeader("Refresh", 10);%>
 <div id="container" style="margin-left:-20px; margin-top:-15px;" class="col-sm-12 col-md-8 col-lg-6 col-xs-12">
@@ -96,11 +101,24 @@ $(document).ready(function(){
         Query query = new Query("SensorData", postKey).addSort("date", Query.SortDirection.DESCENDING);
         List<Entity> updates = datastore.prepare(query).asList(FetchOptions.Builder.withLimit(100));
         Entity Update=updates.get(0);
-        long diffNS=(currentTimeNS)-(Long.parseLong(Update.getProperty("date").toString()));
-        
+        long diffMS=(currentTimeNS)-(Long.parseLong(Update.getProperty("date").toString()));
+        long diffS=diffMS/1000;
+        long days=diffS/86400; diffS=diffS%86400;
+        long hours=diffS/3600; diffS=diffS%3600;
+        long min=diffS/60; diffS=diffS%60;
+        String dayText,hourText,minText,secText;
+        dayText=hourText=minText=secText="";
+        if(days>0)
+        {dayText=" "+Long.toString(days)+" day(s)";}
+        if(hours>0)
+        {dayText=" "+Long.toString(hours)+" hour(s)";}
+        if(min>0)
+        {minText=" "+Long.toString(min)+" min(s)";}
+        secText=" "+Long.toString(diffS)+" sec";
+        System.out.println(dayText+hourText+minText+secText);
         pageContext.setAttribute("confID",confList[i]);
-        pageContext.setAttribute("timeDiff", Long.toString(diffNS)+"ms");
-        if(diffNS>120000)
+        pageContext.setAttribute("timeDiff", dayText+hourText+minText+secText);
+        if(diffMS>120000)
         {
         %>
 	        <tbody>
