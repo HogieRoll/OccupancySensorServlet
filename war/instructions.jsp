@@ -13,7 +13,6 @@
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html  lang="en">
-
 <head>
 
 <link rel="shortcut icon" type="image/png" href="img/ti_logo.png"/>
@@ -39,6 +38,22 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
+</script>
+<script type="text/javascript">
+    function OpenLink(theLink){
+        window.location.href = theLink.href;
+    }
+</script>
 
 <style type="text/css">
 	.bs-example{
@@ -49,10 +64,11 @@
 </head>
 
 <body>
-	<div style="padding-top:5px"></div><a><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img><a>
+	<div style="padding-top:5px"></div>
+	<a href="home.jsp" onclick="OpenLink(this); return false"><img src="img/ti_logo_with_text.png" alt="TI Logo" style="width:200px;"></img></a>
 
 	<h3 class="title">
-		<span>Adding website icon to your homescreen</span>
+		<span>Pinning Website To Your Phone's Homescreen</span>
 	</h3>
 	<hr class="half-bottom">
 
